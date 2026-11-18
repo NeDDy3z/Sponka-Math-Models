@@ -8,7 +8,7 @@
   "website": "https://github.com/PaddlePaddle/PaddleOCR",
   "recommendedRamMb": 6144,
   "minRamMb": 4096,
-  "avgSeconds": 5.0,
+  "avgSeconds": 8,
   "pipeline": "end-to-end",
   "tokenizer": "byte-bpe"
 }

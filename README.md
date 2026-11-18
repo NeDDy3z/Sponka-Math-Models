@@ -8,19 +8,19 @@ In the app: Preferences > OCR > Handwritten math. Pick a model and download it o
 
 | Model | Tag | Size | Speed* | License | Good for |
 |---|---|---|---|---|---|
-| TexTeller 3.0 (recommended) | `texteller-v3.0` | large | ~5.5 s | Apache-2.0 | Long and complex formulas |
-| pix2text-mfr 1.5 (default) | `pix2text-mfr-v1.5` | ~120 MB | ~4 s | MIT | Light, fast, solid on handwriting |
-| PP-FormulaNet-L | `pp-formulanet-l-v1.0` | largest | ~8 s | Apache-2.0 | Best accuracy, slowest |
+| TexTeller 3.0 (recommended) | `texteller-v3.0` | ~320 MB | ~6 s | Apache-2.0 | Long and complex formulas |
+| pix2text-mfr 1.5 | `pix2text-mfr-v1.5` | ~120 MB | ~4 s | MIT | Light, fast, solid on handwriting |
+| PP-FormulaNet-L | `pp-formulanet-l-v1.0` | ~370 MB | ~8 s | Apache-2.0 | Best accuracy, slowest |
 
 *\*Speed was measured on a simple integral formula on an Exynos 1380 phone with 6 GB of RAM.*
 
 From my limited testing, TexTeller 3.0 gives the most reliable results without any training in the app first.
 
-`onnxruntime-v1.30.0` holds the ONNX Runtime library per CPU type. The app downloads it once for all models.
-
 ## Making a release
 
-Needs Python 3.11 or 3.12.
+Bump `version` in `models/<id>/meta.json`, then run the **Release model** workflow in the Actions tab and pick the model. It exports the model, checks it on ONNX Runtime 1.30.0 (the app's version) and creates the release.
+
+To do it locally instead (Python 3.11 or 3.12):
 
 ```sh
 python3.12 -m venv .venv && . .venv/bin/activate

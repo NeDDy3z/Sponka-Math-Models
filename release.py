@@ -46,7 +46,7 @@ def main() -> None:
         f"- Website: {model['website']}",
         f"- Size: {mb(size)} MB",
         f"- Recommended RAM: {model['recommendedRamMb'] / 1024:.1f} GB (at least {model['minRamMb'] / 1024:.1f} GB)",
-        f"- About {model['avgSeconds']:.1f} s per formula on a mid-range phone",
+        f"- About {model['avgSeconds']:g} s per formula (measured on an Exynos 1380 phone with 6 GB of RAM)",
         "",
         "Downloaded and run by Sponka (Preferences > OCR > Handwritten math). model.json describes the files for the app.",
     ])

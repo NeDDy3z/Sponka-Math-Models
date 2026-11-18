@@ -8,7 +8,7 @@
   "website": "https://github.com/breezedeus/Pix2Text",
   "recommendedRamMb": 3072,
   "minRamMb": 2048,
-  "avgSeconds": 2.0,
+  "avgSeconds": 4,
   "pipeline": "encoder-decoder",
   "tokenizer": "byte-bpe"
 }

@@ -8,7 +8,7 @@
   "website": "https://github.com/OleehyO/TexTeller",
   "recommendedRamMb": 4096,
   "minRamMb": 3072,
-  "avgSeconds": 3.0,
+  "avgSeconds": 6,
   "pipeline": "encoder-decoder",
   "tokenizer": "byte-bpe"
 }

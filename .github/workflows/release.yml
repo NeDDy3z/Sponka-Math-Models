@@ -1,0 +1,55 @@
+name: Release model
+
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: Model to export and release
+        type: choice
+        options: [texteller, pix2text-mfr, pp-formulanet-l]
+      prerelease:
+        description: Mark as pre-release
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      MODEL: ${{ inputs.model }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Export
+        working-directory: export
+        run: |
+          case "$MODEL" in
+            pp-formulanet-l)
+              uv venv --python 3.11 ../.venv-export
+              uv pip install --python ../.venv-export/bin/python paddlepaddle "paddlex[ocr]" paddle2onnx onnx onnxruntime pyyaml
+              ../.venv-export/bin/python pp_formulanet_l.py --int8 ;;
+            *)
+              uv venv --python 3.12 ../.venv-export
+              uv pip install --python ../.venv-export/bin/python -r ../requirements.txt --torch-backend cpu
+              case "$MODEL" in
+                texteller) ../.venv-export/bin/python texteller.py --int8 ;;
+                pix2text-mfr) ../.venv-export/bin/python pix2text_mfr.py ;;
+              esac ;;
+          esac
+
+      # The app runs ONNX Runtime 1.30.0; newer versions accept graphs it rejects.
+      - name: Check on the app's runtime
+        run: |
+          uv venv --python 3.12 .venv-check
+          uv pip install --python .venv-check/bin/python onnxruntime==1.30.0 numpy pillow tokenizers
+          .venv-check/bin/python check.py "$MODEL"
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: .venv-check/bin/python release.py "$MODEL" --publish ${{ inputs.prerelease && '--prerelease' || '' }}
