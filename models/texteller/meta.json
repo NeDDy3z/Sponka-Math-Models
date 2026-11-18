@@ -1,0 +1,14 @@
+{
+  "id": "texteller",
+  "name": "TexTeller",
+  "version": "3.0",
+  "description": "ViT-based formula recognizer trained on a very large dataset. Strong on long and complex formulas. Int8 version, bigger and slower than pix2text-mfr.",
+  "trainedOn": "About 80M formula image and LaTeX pairs, printed and handwritten (latex-formulas-80M)",
+  "license": "Apache-2.0",
+  "website": "https://github.com/OleehyO/TexTeller",
+  "recommendedRamMb": 4096,
+  "minRamMb": 3072,
+  "avgSeconds": 3.0,
+  "pipeline": "encoder-decoder",
+  "tokenizer": "byte-bpe"
+}

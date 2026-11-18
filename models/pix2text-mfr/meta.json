@@ -1,0 +1,14 @@
+{
+  "id": "pix2text-mfr",
+  "name": "pix2text-mfr",
+  "version": "1.5",
+  "description": "Small TrOCR-style formula recognizer from the Pix2Text project. Good all-rounder for handwritten formulas and the lightest option.",
+  "trainedOn": "Printed and handwritten formula images (Pix2Text MFR datasets)",
+  "license": "MIT",
+  "website": "https://github.com/breezedeus/Pix2Text",
+  "recommendedRamMb": 3072,
+  "minRamMb": 2048,
+  "avgSeconds": 2.0,
+  "pipeline": "encoder-decoder",
+  "tokenizer": "byte-bpe"
+}

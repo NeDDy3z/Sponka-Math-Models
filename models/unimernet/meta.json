@@ -1,0 +1,14 @@
+{
+  "id": "unimernet",
+  "name": "UniMERNet tiny",
+  "version": "1.0",
+  "description": "Universal formula recognizer from OpenDataLab, the tiny variant, int8. Good on complex printed and handwritten formulas.",
+  "trainedOn": "UniMER-1M: about 1M printed and handwritten formula images",
+  "license": "Apache-2.0",
+  "website": "https://github.com/opendatalab/UniMERNet",
+  "recommendedRamMb": 4096,
+  "minRamMb": 3072,
+  "avgSeconds": 2.5,
+  "pipeline": "encoder-decoder",
+  "tokenizer": "byte-bpe"
+}

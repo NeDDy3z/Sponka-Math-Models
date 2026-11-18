@@ -1,0 +1,9 @@
+numpy
+onnx
+onnxruntime
+pillow
+tokenizers
+huggingface_hub
+optimum[exporters]
+torch
+pyyaml
