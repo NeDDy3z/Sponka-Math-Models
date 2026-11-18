@@ -6,12 +6,14 @@ In the app: Preferences > OCR > Handwritten math. Pick a model, download it once
 
 ## Models
 
-| Model | Tag | Size | License | Good for |
-|---|---|---|---|---|
-| pix2text-mfr 1.5 (default) | `pix2text-mfr-v1.5` | ~120 MB | MIT | Light, fast, solid on handwriting |
-| TexTeller 3.0 | `texteller-v3.0` | large | Apache-2.0 | Long and complex formulas |
-| UniMERNet tiny | `unimernet-v1.0` | large | Apache-2.0 | Complex printed and handwritten formulas |
-| PP-FormulaNet-L | `pp-formulanet-l-v1.0` | largest | Apache-2.0 | Best accuracy, slowest |
+| Model | Tag | Size | Speed* | License | Good for |
+|---|---|---|---|---|---|
+| pix2text-mfr 1.5 (default) | `pix2text-mfr-v1.5` | ~120 MB | ~4 s | MIT | Light, fast, solid on handwriting |
+| TexTeller 3.0 | `texteller-v3.0` | large | ~5.5 s | Apache-2.0 | Long and complex formulas |
+| UniMERNet tiny | `unimernet-v1.0` | large | ~8.5 s | Apache-2.0 | Complex printed and handwritten formulas |
+| PP-FormulaNet-L | `pp-formulanet-l-v1.0` | largest | - | Apache-2.0 | Best accuracy, slowest |
+
+*\*Speed was measured on a simple integral formula on an Exynos 1380 phone with 6 GB of RAM.*
 
 Each release page lists the model's size, recommended RAM and speed per formula. The app shows the same details before you download.
 
@@ -49,7 +51,7 @@ Needs Python 3.11 or 3.12 (onnxruntime has no wheels for newer versions yet).
 ```sh
 python3.12 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
-cd export && python pix2text_mfr.py && cd ..   # or texteller.py, unimernet.py --checkpoint <dir>, pp_formulanet_l.py
+cd export && python pix2text_mfr.py && cd ..   # or texteller.py; unimernet_tiny.py and pp_formulanet_l.py need their own venvs (see the top of each script)
 python check.py pix2text-mfr                   # accuracy, speed, peak memory on samples/*.png + *.tex
 python release.py pix2text-mfr                 # writes build/<id>/model.json and RELEASE.md
 python release.py pix2text-mfr --publish       # creates the GitHub release
